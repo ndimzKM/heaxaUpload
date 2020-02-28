@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto&display=swap")
+    link(rel="stylesheet", href="/components/fonts/fontawesome/css/all.css")
+    link(rel="stylesheet", href="/components/css/drive.css")
+    link(rel="icon" href="/components/img/icon.png")
+    title HexaUpload
+  body
+    nav
+      .navbar
+        .logo-search
+          h1
+            a(href="/") HEXAUPLOAD
+            i.fas.fa-cloud
+        i.fas.fa-search
+          input.searc-field(type="text" placeholder="   Search Drive")
+        .user
+          i.fas.fa-user
+            a(href="#")   #{user}
+          i.fas.fa-logout
+            form(action="/user/logout" method="POST")
+              input(type="submit" value="logout")
+    
+    section#main
+      .side-bar
+        form(action="/files/upload" method="POST" enctype="multipart/form-data")
+          input#file-upload(type="file" name="fileName" placeholder="Upload" required)
+          br
+          br
+          i.fa.fa-upload
+            input.btn-upload(type="submit" value="Upload")
+        br
+        br
+        ul.side-bar-nav
+          li
+            i.fa.fa-hdd
+              a(href="/files/drive")  My Drive
+          li
+            i.fas.fa-folder  
+              a(href="/files/shared") Shared files
+          li
+            i.fas.fa-users 
+              a(href="/files/public") Public files
+      .main-bar
+        h3 Drive
+        br
+        hr
+        br
+        .files#files
+          each doc, i in files
+            .file
+              i.far.fa-file-image.fa-5x
+              button.fa.fa-ellipsis-v.file-options
+              ul
+                li
+                  form(action="/files/"+doc._id+"/share" method="POST")
+                    input(type="submit" value="Share")
+                li
+                  a(href="../"+doc.othername download=doc.name) Download
+                li
+                  form(action="/files/"+doc._id+"/delete" method="POST")
+                    input(type="submit" value="Delete")
+                li
+                  a(href="#") File Info
+              br
+              p #{doc.name}
+              .file-info  
+                table
+                  tr
+                    td File name
+                    td.value #{doc.name}
+                  tr
+                    td File Size
+                    td.value 230Kb
+                  tr
+                    td Upload Date
+                    td.value #{doc.time}
+      .another-bar
+        .test-file-info#main-file-info
+          i.fa.fa-file-archive.fa-5x
+          table
+            tr
+              td File name
+              td.value test.txt
+            tr
+              td File Size
+              td.value 230Kb
+            tr
+              td Upload Date
+              td.value test.txt
+          
+    script(src="/components/js/main.js")

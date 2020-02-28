@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    //link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto&display=swap")
+    link(rel="stylesheet", href="/components/fonts/fontawesome/css/all.css")
+    link(rel="stylesheet", href="/components/css/style.css")
+    link(rel="icon" href="/components/img/icon.png")
+    title HexaUpload
+  body
+    
+    header
+      .header
+        nav
+          .navbar
+            .brand
+              .brand-name
+                h1 HEXAUPLOAD
+              i.fas.fa-cloud.fa-2x
+            ul
+              if user
+                li.logged-in
+                  form(action="/user/logout" method="POST")
+                    button(type="submit" value="logout" class="fas fa-sign-out-alt")
+              else
+                li
+                  a(href="/user/register") register
+                li
+                  a.login(href="/user/login") login
+              
+        .main-header
+          .header-content
+            h1 Welcome to HexaUpload
+            p Bringing the Cloud into your hands
+            br
+            if user
+              a.register(href="/files/drive") Go to Files
+            else
+              a.register(href="/user/register") Register now
+          a.fa.fa-angle-down.up-btn(href="#access")
+    .access#access
+      .store
+        center
+          img.multi(src="/components/img/documents-set.svg", alt="")
+          h3 Store files
+          p Keep pictures, designs, applications, recordings, videos and more. Your first 200MB of storage is free
+      .anywhere
+        center
+          img.multi(src="/components/img/multiple-devices.svg", alt="")
+          h3 Browse from anywhere
+          p Keep pictures, designs, applications, recordings, videos and more. Your first 200MB of storage is free
+      .share
+        center
+          img.multi(src="/components/img/folder.svg", alt="")
+          h3 Share files
+          p Keep pictures, designs, applications, recordings, videos and more. Your first 200MB of storage is free
+    .info
+      h1 About Us
+      h3 Breaking the barrier
+      p Are you tired of having to move from Brikama Campus to Faraba or even Kanifing to get a hold of a copy of an assignment?
+      p Have you ever been frustrated when your machine is infected by someone else's USB stick demanding file transfer?
+      p You are very lucky to have met us. Here at HexaUpload, We take you data seriously. We make sure the right file gets to the right person and stays in the cloud for as  long as you intend.
+      p To get the most out of our service, check out our premium membership for resonable amounts of dalasis
+    center
+      .get-started
+        h1 Get Started With HexaUpload
+        br
+        if user
+          a.register(href="/files/drive") Go to Files  
+        else
+          a.register(href="/user/register") Sign up for free
+    footer
+      p Copyright &copy; 2020. All Rights Reserved, HexaUpload
