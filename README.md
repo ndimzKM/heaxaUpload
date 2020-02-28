@@ -3,4 +3,4 @@ Run the following:
 
 npm install
 
-mkdir shared
+Make sure to empty the "uploads" and "shared" folders if you want to start afresh
